@@ -4,7 +4,7 @@
 
 ## International
 
-Prüfen und vereinheitlichen internationaler Postleitzahlen, z.B. für die Verwendung in Karten. Kann danach direkt in Cubes/Trees verwendet werden, um daraus Selektor-Variablen zu erstellen
+Prüfen und vereinheitlichen internationaler Postleitzahlen, z.B. für die Verwendung in Karten. Kann danach als virtuelle Variable (Text) gespeichert werden und in Cubes/Trees verwendet werden, um daraus Selektor-Variablen zu erstellen
 
 ![grafik](https://user-images.githubusercontent.com/14135678/81716454-b103ee80-9479-11ea-9e8e-5d66d6016b3c.png)
 
