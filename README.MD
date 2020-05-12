@@ -1,5 +1,7 @@
 # Osterformel
 
+...
+
 # Postleitzahl
 
 ## International
@@ -20,3 +22,8 @@ Case(
 	
 )
 ```
+
+# Hinweise
+
+* Angaben in `[]`sind Variablen aus dem System
+* Angaben in `{}` sind Selektionen, die per Drag&Drop in den Ausdruck gezogen werden
