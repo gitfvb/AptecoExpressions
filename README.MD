@@ -57,15 +57,10 @@ Index(
 
 ```
 Index(
-	If(
-		IsMissing([durchschnittliche Zeit zwischen zwei Käufe in Tagen])
-		;1
-		;BandUp(
-			[durchschnittliche Zeit zwischen zwei Käufe in Tagen]
-			;0;7;14;30;60;90;180;360;540;720
-		)+2
-	)
-	;"!"
+	BandUp(
+		[durchschnittliche Zeit zwischen zwei Käufe in Tagen]
+		;0;7;14;30;60;90;180;360;540;720
+	)+1
 	;" 0"
 	;"01 - 06"
 	;"07 - 13"
