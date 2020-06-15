@@ -53,6 +53,33 @@ Index(
 )
 ```
 
+## Durchschnittliche Anzahl Tage zwischen Käufen in Kategorien
+
+```
+Index(
+	If(
+		IsMissing([durchschnittliche Zeit zwischen zwei Käufe in Tagen])
+		;1
+		;BandUp(
+			[durchschnittliche Zeit zwischen zwei Käufe in Tagen]
+			;0;7;14;30;60;90;180;360;540;720
+		)+2
+	)
+	;"!"
+	;" 0"
+	;"01 - 06"
+	;"07 - 13"
+	;"14 - 29"
+	;"30 - 59"
+	;"60 - 89"
+	;"90 - 179"	
+	;"180 - 359"
+	;"360 - 539"	
+	;"540 - 719"
+	;">= 720"
+)
+```
+
 ## Normalverteilung 
 
 Um eine Normalverteilung in die Expressions zu bringen, einfach folgende Formel benutzen. Damit sieht die Verteilung von Zufallswerten nicht immer gleich aus.
