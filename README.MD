@@ -27,6 +27,32 @@ Case(
 
 # Demo
 
+## Banding von "Personal Best" via Expression
+```
+Index(
+	If(
+		IsMissing([Personal Best - Letzer Trend])
+		;1
+		;BandDown(
+			[Personal Best - Letzer Trend]
+			;1,6;1,2;0,8;0,4;0;-0,1;-0,4;-0,8;-1,2;-1,6
+		)+2
+	)
+	;"!"
+	;"+2,0 - +1,7"
+	;"+1,6 - +1,3"
+	;"+1,2 - +0,9"
+	;"+0,8 - +0,5"
+	;"+0,4 - +0,1"
+	;" 0,0"
+	;"-0,1 - -0,3"
+	;"-0,4 - -0,7"
+	;"-0,8 - -1,1"
+	;"-1,2 - -1,5"
+	;"-1,6 - -2,0"
+)
+```
+
 ## Normalverteilung 
 
 Um eine Normalverteilung in die Expressions zu bringen, einfach folgende Formel benutzen. Damit sieht die Verteilung von Zufallswerten nicht immer gleich aus.
