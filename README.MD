@@ -144,6 +144,69 @@ If(Populated([test Agg])>0;DescOf([test Agg]);DescOf([Automarken]))
 If(And([Geburtsdatum]>19000101;[Geburtsdatum]<20500101);[Geburtsdatum]; today(0))
 ```
 
+## Offset einer Uhrzeit in Bezug auf UTC, wenn das Datum in Sommerzeit oder Winterzeit liegt
+
+Dies geht nicht genau nach Stunde, sondern nach Tagen, sollte aber für einen Großteil der Use-Cases ausreichen:
+
+```
+/* Return Offset depending on summertime */
+If (
+	/* Is 1 if date is between summertime beginning and end */
+	And(
+	
+		/* Check if date is later than beginning of summertime */
+		DateDiff(
+			DateShift(
+				/* Create the date of summertime beginning */
+				MakeDate(DateYear([Bestelldatum]);3;31);
+				/* Check the last 7 days of march for beginning of summertime */
+				Case(
+					DayOfWeek(MakeDate(DateYear([Bestelldatum]);3;31))=7;0
+					;DayOfWeek(MakeDate(DateYear([Bestelldatum]);3;30))=7;-1
+					;DayOfWeek(MakeDate(DateYear([Bestelldatum]);3;29))=7;-2
+					;DayOfWeek(MakeDate(DateYear([Bestelldatum]);3;28))=7;-3
+					;DayOfWeek(MakeDate(DateYear([Bestelldatum]);3;27))=7;-4
+					;DayOfWeek(MakeDate(DateYear([Bestelldatum]);3;26))=7;-5
+					;DayOfWeek(MakeDate(DateYear([Bestelldatum]);3;25))=7;-6
+				)
+				;"days"
+			)
+		;[Bestelldatum]
+		;"days"
+		)>=0
+	
+		/* Check if date is before summertime end */
+		;DateDiff(
+			DateShift(
+				/* Create the date of summertime end */
+				MakeDate(DateYear([Bestelldatum]);10;31);
+				/* Check the last 7 days of october for end of summertime */
+				Case(
+					DayOfWeek(MakeDate(DateYear([Bestelldatum]);10;31))=7;0
+					;DayOfWeek(MakeDate(DateYear([Bestelldatum]);10;30))=7;-1
+					;DayOfWeek(MakeDate(DateYear([Bestelldatum]);10;29))=7;-2
+					;DayOfWeek(MakeDate(DateYear([Bestelldatum]);10;28))=7;-3
+					;DayOfWeek(MakeDate(DateYear([Bestelldatum]);10;27))=7;-4
+					;DayOfWeek(MakeDate(DateYear([Bestelldatum]);10;26))=7;-5
+					;DayOfWeek(MakeDate(DateYear([Bestelldatum]);10;25))=7;-6
+				)
+				;"days"
+			)
+		;[Bestelldatum]
+		;"days"
+		)<0
+		
+	)
+	
+	/* It is summertime, the offset to UTC is 2 hours */
+	;2
+	
+	/* It is wintertime, the offset to UTC is 1 hour */
+	;1
+	
+)
+```
+
 
 # Hinweise
 
