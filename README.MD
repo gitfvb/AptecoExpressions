@@ -207,6 +207,29 @@ If (
 )
 ```
 
+## Jahreszeit fest an jedem Kontakt
+
+So kann man innerhalb der Kampagnen z.B. nach aktueller Jahreszeit unterscheiden
+
+```
+Index(
+	BandUp(
+		DateWeek(
+			Today(3) /* Postpone today with 3 days (because of postal dates) */
+		)
+		;15 /*  0-14 = 0 */
+		;25 /* 15-24 = 1 */
+		;40 /* 25-39 = 2 */
+		;50 /* 40-49 = 3 */
+			/*    Else 4 */
+	)+1 /* Shift the result +1 because of 1-based index */
+	;"Winter Begin-of-year"
+	;"Spring"
+	;"Summer"
+	;"Autumn"
+	;"Winter End-of-year"
+)
+```
 
 # Hinweise
 
