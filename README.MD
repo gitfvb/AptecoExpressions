@@ -231,6 +231,17 @@ Index(
 )
 ```
 
+## Unixtimestamp in DateTime umrechnen
+
+```
+DateTimeShift(
+	 MakeDateTime(2000;01;01;00;00;00); /* Calculate from year 2000 onwards */
+	1640867106 /* Place in the unix timestamp here */
+	-946681200; /* Calculate from year 2000 onwards */
+	"seconds"
+)
+```
+
 # Hinweise
 
 * Angaben in `[]`sind Variablen aus dem System
